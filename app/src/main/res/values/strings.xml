@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">banksampah</string>
+
+    <string name="desc_one">Make transactions with ease and redeem your coins with various attractive prizes</string>
+    <string name="desc_two">You can visit the GreenT location or we will pick up your trash. So transact with your waste so that it doesnt pile up and can be reused.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_news">Title News</string>
+    <string name="detail_news">Detail News</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="news">News</string>
+
+    <string name="information">Green Treasure is a digital waste bank that functions to increase awareness of the people of Padang City to dispose of waste in a disciplined manner and can help reduce waste in Padang City.</string>
+
+    <string name="app">Green Treasure\nPadang City, 24255, Indonesia\n(021) 12131415-9\ngreent@gmail.com</string>
+
+</resources>
