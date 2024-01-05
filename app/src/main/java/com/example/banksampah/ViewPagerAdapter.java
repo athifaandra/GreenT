@@ -16,13 +16,17 @@ public class ViewPagerAdapter extends PagerAdapter {
     Context context;
 
     int images[] = {
-            R.drawable.image1,
-            R.drawable.image2
+            R.drawable.onboard1,
+            R.drawable.onboard2,
+            R.drawable.onboard3,
+            R.drawable.onboard4
     };
 
     int description[] = {
             R.string.desc_one,
-            R.string.desc_two
+            R.string.desc_two,
+            R.string.desc_three,
+            R.string.desc_four
     };
 
     public ViewPagerAdapter(Context context){

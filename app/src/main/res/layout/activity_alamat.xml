@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".alamat">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/appbar_widget_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            app:title="Address" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar_alamat"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/phonum_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number" />
+
+            <EditText
+                android:id="@+id/input_phonum_add"
+                android:layout_width="345dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:paddingStart="20dp"
+                android:background="@drawable/inputgrey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/add_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address" />
+
+            <EditText
+                android:id="@+id/input_add_add"
+                android:layout_width="345dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:paddingStart="20dp"
+                android:background="@drawable/inputgrey" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_subdistric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="Subdistrict" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dd_subdistric"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="345dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:hintTextAppearance="@drawable/inputgrey">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/input_subdistric"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputgrey"
+                android:inputType="none"
+                android:textSize="12sp"
+                android:paddingStart="20dp"
+                app:simpleItems="@array/optionlist_subdis" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ward" />
+
+            <EditText
+                android:id="@+id/input_ward"
+                android:layout_width="345dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:paddingStart="20dp"
+                android:background="@drawable/inputgrey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/add_postalcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Postal Code" />
+
+            <EditText
+                android:id="@+id/input_add_postalcode"
+                android:layout_width="345dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:paddingStart="20dp"
+                android:background="@drawable/inputgrey" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_svchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#9EB873"
+            android:text="Save Change"
+            android:onClick="saveChanges"
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

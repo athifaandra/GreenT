@@ -1,12 +1,14 @@
 package com.example.banksampah;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
+import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 
 public class DetailNewsActivity extends AppCompatActivity {
     public static final String ITEM_EXTRA = "item_extra";
@@ -16,6 +18,18 @@ public class DetailNewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_news);
 
+        Toolbar toolbar = findViewById(R.id.appbar_widget_news);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         TextView titleNews = findViewById(R.id.title_news);
         ImageView imageNews = findViewById(R.id.imageNews);
         TextView detailNewsTextView = findViewById(R.id.detail_news_textview);
@@ -23,26 +37,14 @@ public class DetailNewsActivity extends AppCompatActivity {
         News news = getIntent().getParcelableExtra(ITEM_EXTRA);
         if (news != null) {
             Glide.with(this)
-                    .load(news.getPhoto())
+                    .load(news.getPhotoUrl())
                     .into(imageNews);
             titleNews.setText(news.getTitle());
+            detailNewsTextView.setText(news.getDetail());
 
-            // Memisahkan teks detail menjadi paragraf
-            String[] paragraphs = news.getDetail().split("\n");
-            StringBuilder formattedDetail = new StringBuilder();
-
-            // Menggabungkan setiap paragraf ke dalam StringBuilder
-            for (String paragraph : paragraphs) {
-                formattedDetail.append(paragraph).append("\n\n");
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle(news.getTitle());
             }
-
-            detailNewsTextView.setText(formattedDetail.toString());
-        }
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Detail News");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
-
 }

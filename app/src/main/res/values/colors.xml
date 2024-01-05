@@ -6,4 +6,7 @@
     <color name="active">#4FA958</color>
     <color name="inactive">#D9D9D9</color>
     <color name="green">#6FCC79</color>
+    <color name="gray">#CDCAC9</color>
+    <color name="background_text">#588842</color>
+    <color name="backgorund_image">#9EB873</color>
 </resources>

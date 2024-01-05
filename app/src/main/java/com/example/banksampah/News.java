@@ -4,30 +4,27 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class News implements Parcelable {
+    private String id;
     private String title;
     private String detail;
-    private int photo;
+    private String photoUrl;
 
     public News() {
-        // Konstruktor kosong diperlukan
+
+    }
+
+    public News(String id, String title, String detail, String photoUrl) {
+        this.id = id;
+        this.title = title;
+        this.detail = detail;
+        this.photoUrl = photoUrl;
     }
 
     protected News(Parcel in) {
+        id = in.readString();
         title = in.readString();
         detail = in.readString();
-        photo = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(detail);
-        dest.writeInt(photo);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        photoUrl = in.readString();
     }
 
     public static final Creator<News> CREATOR = new Creator<News>() {
@@ -42,7 +39,13 @@ public class News implements Parcelable {
         }
     };
 
-    // Getter dan setter untuk atribut News (title, detail, photo)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -60,11 +63,24 @@ public class News implements Parcelable {
         this.detail = detail;
     }
 
-    public int getPhoto() {
-        return photo;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setPhoto(int photo) {
-        this.photo = photo;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(detail);
+        dest.writeString(photoUrl);
     }
 }

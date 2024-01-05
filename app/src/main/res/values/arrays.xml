@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="optionlist_subdis">
+        <item>Bungus Teluk Kabung</item>
+        <item>Lubuk Kilangan</item>
+        <item>Lubuk Begalung</item>
+        <item>Padang Selatan</item>
+        <item>Padang Timur</item>
+        <item>Padang Barat</item>
+        <item>Padang Utara</item>
+        <item>Nanggalo</item>
+        <item>Kuranji</item>
+        <item>Pauh</item>
+        <item>Koto Tangah</item>
+    </string-array>
+</resources>

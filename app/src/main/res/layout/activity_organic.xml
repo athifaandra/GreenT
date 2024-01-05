@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Anorganic">
+    tools:context=".Organic">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anorganic"
+            android:text="Organic"
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_marginStart="8dp" />
@@ -39,6 +39,7 @@
         android:layout_marginTop="70dp" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardor"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_gravity="center"
@@ -58,8 +59,9 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@color/white"
-                android:text="-"
-                android:textSize="50sp"
+                android:text="faa"
+                android:textSize="24sp"
+                android:textColor="@color/black"
                 android:onClick="decrementWeight" />
 
             <!-- Berat (0kg) -->
@@ -84,6 +86,13 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardor"
+        android:layout_marginTop="20dp" />
 
 
 </RelativeLayout>

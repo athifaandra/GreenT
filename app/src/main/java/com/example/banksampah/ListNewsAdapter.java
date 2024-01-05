@@ -5,10 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListViewHolder> {
@@ -35,7 +34,19 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListVi
         News news = listNews.get(position);
         holder.title.setText(news.getTitle());
         holder.detail.setText(news.getDetail());
-        holder.image.setImageResource(news.getPhoto());
+
+        Glide.with(holder.itemView.getContext())
+                .load(news.getPhotoUrl())
+                .into(holder.image);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(news);
+                }
+            }
+        });
     }
 
     @Override
@@ -68,6 +79,6 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListVi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(News data);
+        void onItemClick(News news);
     }
 }

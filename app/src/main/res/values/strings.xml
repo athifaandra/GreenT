@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">banksampah</string>
 
-    <string name="desc_one">Make transactions with ease and redeem your coins with various attractive prizes</string>
-    <string name="desc_two">You can visit the GreenT location or we will pick up your trash. So transact with your waste so that it doesnt pile up and can be reused.</string>
+    <string name="desc_one">Here you can distinguish and sort each type of garbage properly. You can also easily sell your trash at the nearest trash bank. And get your coins!</string>
+    <string name="desc_two">Make transactions with ease and redeem your coins with various attractive prizes</string>
+    <string name="desc_three">Here you can find out how each separated waste can be recycled into useful and reusable items.</string>
+    <string name="desc_four">You can visit the GreenT location or we will pick up your trash. So transact with your waste so that it doesnt pile up and can be reused.</string>
+
+    <string name="type_one">"Container for organic food waste. Later this waste can be used as compost."</string>
+    <string name="type_two">"With this trash can it can be easier to use it as a recycled craft or recycling in the factory."</string>
+    <string name="type_three">"This type of waste must be separated because it usually comes from B3 (Bahan  Berbahaya Beracun)."</string>
+    <string name="type_four">"This type of trash can is intended for residual waste. Non-recyclable waste. such as diapers, cigarette butts, styrofoam and used tissues"</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_news">Title News</string>
@@ -15,4 +23,8 @@
 
     <string name="app">Green Treasure\nPadang City, 24255, Indonesia\n(021) 12131415-9\ngreent@gmail.com</string>
 
+    <string name="info_pickup">Select the type and enter the estimated weight of the waste. There is no minimum weight limit for pickup</string>
+
+    <string name="map_name">Location Green Treasure</string>
+    <string name="api_map">AIzaSyD12u_UIAWYmimn6Qh7jheyDZu14OxZ2Xo</string>
 </resources>

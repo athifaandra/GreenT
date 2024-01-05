@@ -37,12 +37,15 @@ public class MainActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSLideViewPager.getCurrentItem() == viewPagerAdapter.getCount() - 1) {
-                    Intent i = new Intent(MainActivity.this, mainscreen.class);
+                int currentPage = mSLideViewPager.getCurrentItem();
+                int lastPageIndex = viewPagerAdapter.getCount() - 1;
+
+                if (currentPage == lastPageIndex) {
+                    Intent i = new Intent(MainActivity.this, login.class);
                     startActivity(i);
                     finish();
                 } else {
-                    mSLideViewPager.setCurrentItem(mSLideViewPager.getCurrentItem() + 1);
+                    mSLideViewPager.setCurrentItem(currentPage + 1, true);
                 }
             }
         });
