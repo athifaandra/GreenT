@@ -1,6 +1,7 @@
 package com.example.banksampah;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -75,6 +76,15 @@ public class login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+
+                                    SharedPreferences.Editor editor = getSharedPreferences("MyPrefs", MODE_PRIVATE).edit();
+                                    editor.putString("currentUserID", currentUserID);
+                                    editor.putString("userEmail", userEmail);
+                                    editor.apply();
+
                                     //intent ke home
                                     Intent intent = new Intent(login.this, mainscreen.class);
                                     startActivity(intent);

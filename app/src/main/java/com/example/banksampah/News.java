@@ -8,16 +8,20 @@ public class News implements Parcelable {
     private String title;
     private String detail;
     private String photoUrl;
+    private String userId;
+    private String userEmail;
 
     public News() {
 
     }
 
-    public News(String id, String title, String detail, String photoUrl) {
+    public News(String id, String title, String detail, String photoUrl, String userId) {
         this.id = id;
         this.title = title;
         this.detail = detail;
         this.photoUrl = photoUrl;
+        this.userId = userId;
+
     }
 
     protected News(Parcel in) {
@@ -25,6 +29,7 @@ public class News implements Parcelable {
         title = in.readString();
         detail = in.readString();
         photoUrl = in.readString();
+        userId = in.readString();
     }
 
     public static final Creator<News> CREATOR = new Creator<News>() {
@@ -71,6 +76,22 @@ public class News implements Parcelable {
         this.photoUrl = photoUrl;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,5 +103,6 @@ public class News implements Parcelable {
         dest.writeString(title);
         dest.writeString(detail);
         dest.writeString(photoUrl);
+        dest.writeString(userId);
     }
 }

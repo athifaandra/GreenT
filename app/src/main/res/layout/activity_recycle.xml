@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_recycle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/appbar_widget_recycle"
@@ -20,39 +21,43 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_waste"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar_recycle"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="350dp"
-            android:justificationMode="inter_word"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Waste that can usually be recycled is non-organic waste and paper. Organic waste is usually used as compost."
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_waste"
-        android:layout_marginTop="20dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recycle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_recycle">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:text="Please share your excitement about recycling waste!"
+        android:layout_marginTop="70dp"
+        android:textSize="16sp"/>
 
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:listitem="@layout/item_recycle" />
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/flFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_addre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_add_24"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="@color/green"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,17 +5,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListViewHolder> {
     private ArrayList<News> listNews;
     private OnItemClickListener onItemClickListener;
+    private String currentUserID;
 
-    public ListNewsAdapter(ArrayList<News> list) {
+    public ListNewsAdapter(ArrayList<News> list, String currentUserID) {
         this.listNews = list;
+        this.currentUserID = currentUserID;
+    }
+
+    public void setCurrentUserID(String currentUserID) {
+        this.currentUserID = currentUserID;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -31,19 +40,20 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListVi
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
-        News news = listNews.get(position);
-        holder.title.setText(news.getTitle());
-        holder.detail.setText(news.getDetail());
+        News newsItem = listNews.get(position);
+        holder.title.setText(newsItem.getTitle());
+        holder.detail.setText(newsItem.getDetail());
+        holder.authorEmail.setText(newsItem.getUserEmail());
 
         Glide.with(holder.itemView.getContext())
-                .load(news.getPhotoUrl())
+                .load(newsItem.getPhotoUrl())
                 .into(holder.image);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(news);
+        holder.itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                int adapterPosition = holder.getAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onItemClick(newsItem, currentUserID);
                 }
             }
         });
@@ -56,29 +66,18 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsAdapter.ListVi
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView title, detail;
+        TextView title, detail, authorEmail;
 
         public ListViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_news);
             title = itemView.findViewById(R.id.title_news);
             detail = itemView.findViewById(R.id.detail_news);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (onItemClickListener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            onItemClickListener.onItemClick(listNews.get(position));
-                        }
-                    }
-                }
-            });
+            authorEmail = itemView.findViewById(R.id.text_author_email);
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(News news);
+        void onItemClick(News news, String currentUserID);
     }
 }

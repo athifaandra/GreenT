@@ -1,6 +1,6 @@
 package com.example.banksampah;
 
-import android.icu.text.Transliterator;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,75 +10,60 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
-public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleHolder> {
+public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleViewHolder> {
+    private ArrayList<RecycleItem> dataList;
+    private Context context;
 
-    private ArrayList<SetterGetter3> listdata3;
-
-    public RecycleAdapter(ArrayList<SetterGetter3> listdata3){
-        this.listdata3 = listdata3;
+    public RecycleAdapter(ArrayList<RecycleItem> dataList, Context context) {
+        this.dataList = dataList;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public RecycleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycle,parent,false);
-        RecycleHolder holder = new RecycleHolder(view);
-        return holder;
+    public RecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_recycle, parent, false);
+        return new RecycleViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecycleHolder holder, int position) {
-        final SetterGetter3 getData = listdata3.get(position);
-        String titlekiri = getData.getTitlekiri(); //ambil dari settergetter
-        String titlekanan = getData.getTitlekanan();
-        String imgkiri = getData.getImgkiri();
-        String imgkanan = getData.getImgkanan();
-        String panah = getData.getPanah();
+    public void onBindViewHolder(@NonNull RecycleViewHolder holder, int position) {
 
-        holder.titleKiri.setText(titlekiri);
-        if (imgkiri.equals("SampahOrganik")){
-            holder.imgkiri.setImageResource(R.drawable.sampah_organik_1);
-            holder.titleKanan.setText(titlekanan);
-            holder.imgkanan.setImageResource(R.drawable.pupuk_1);
-            holder.panah.setImageResource(R.drawable.panah_1);
-        }else if(imgkiri.equals("BotolPlastik")){
-            holder.imgkiri.setImageResource(R.drawable.botol_plastik_1);
-            holder.titleKanan.setText(titlekanan);
-            holder.imgkanan.setImageResource(R.drawable.pot_plastik_1);
-            holder.panah.setImageResource(R.drawable.panah_1);
-        }else if(imgkiri.equals("KantongPlastik")){
-            holder.imgkiri.setImageResource(R.drawable.kantong_plastik_1);
-            holder.titleKanan.setText(titlekanan);
-            holder.imgkanan.setImageResource(R.drawable.bunga_plastik_1);
-            holder.panah.setImageResource(R.drawable.panah_1);
-        }else if(imgkiri.equals("SendokPlastik")){
-            holder.imgkiri.setImageResource(R.drawable.sendok_plastik_1);
-            holder.titleKanan.setText(titlekanan);
-            holder.imgkanan.setImageResource(R.drawable.lampion_sendok_plastik_1);
-            holder.panah.setImageResource(R.drawable.panah_1);
-        }
+        Glide.with(context).load(dataList.get(position).getImageLeftResource()).into(holder.imageLeft);
+        holder.titleLeft.setText(dataList.get(position).getTitleLeft());
+
+        Glide.with(context).load(dataList.get(position).getImageRightResource()).into(holder.imageRight);
+        holder.titleRight.setText(dataList.get(position).getTitleRight());
+
+
+//        RecycleItem currentItem = recycleItemList.get(position);
+//
+//        holder.titleLeft.setText(currentItem.getTitleLeft());
+//        holder.titleRight.setText(currentItem.getTitleRight());
+//        holder.imageLeft.setImageResource(Integer.parseInt(currentItem.getImageLeftResource()));
+//        holder.imageRight.setImageResource(Integer.parseInt(currentItem.getImageRightResource()));
     }
 
     @Override
     public int getItemCount() {
-        return listdata3.size();
+        return dataList.size();
     }
 
-    public class RecycleHolder extends RecyclerView.ViewHolder {
+    public static class RecycleViewHolder extends RecyclerView.ViewHolder {
+        public TextView titleLeft, titleRight;
+        public ImageView imageLeft, imageRight;
 
-        TextView titleKiri, titleKanan;
-        ImageView imgkiri, imgkanan, panah;
-
-        public RecycleHolder(@NonNull View itemView) {
+        public RecycleViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            titleKiri = itemView.findViewById(R.id.tv_titlekiri);
-            titleKanan = itemView.findViewById(R.id.tv_titlekanan);
-            imgkiri = itemView.findViewById(R.id.iv_imgkiri);
-            imgkanan = itemView.findViewById(R.id.iv_imgkanan);
-            panah = itemView.findViewById(R.id.iv_panah);
+            titleLeft = itemView.findViewById(R.id.tv_titlekiri);
+            titleRight = itemView.findViewById(R.id.tv_titlekanan);
+            imageLeft = itemView.findViewById(R.id.iv_imgkiri);
+            imageRight = itemView.findViewById(R.id.iv_imgkanan);
         }
     }
 }
+
