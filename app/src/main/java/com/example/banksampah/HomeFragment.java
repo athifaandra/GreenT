@@ -1,9 +1,11 @@
 package com.example.banksampah;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,6 +30,18 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ImageView soCuteImageView = view.findViewById(R.id.cute);
+        soCuteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Implementasi untuk kembali ke halaman login
+                // Misalnya, menggunakan Intent untuk kembali ke halaman login
+                Intent intent = new Intent(requireContext(), login.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
 
         recyclerViewMenu3 = view.findViewById(R.id.rv_menu3);
         recyclerViewMenu2 = view.findViewById(R.id.rv_menu2);

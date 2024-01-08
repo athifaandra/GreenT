@@ -84,19 +84,21 @@ public class AddNews extends AppCompatActivity {
             Glide.with(this)
                     .load(newsToEdit.getPhotoUrl())
                     .into(add_img);
+
+            userEmail = newsToEdit.getUserEmail();
+        } else {
+            SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            userEmail = prefs.getString("userEmail", null);
         }
 
-
         add_img.setOnClickListener(V -> selectImage());
-
-        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String currentUserID = prefs.getString("currentUserID", null);
-        userEmail = prefs.getString("userEmail", null);
 
         add_save.setOnClickListener(v -> {
             if (add_title.getText().length() > 0 && add_teks.getText().length() > 0) {
                 String title = add_title.getText().toString();
                 String detail = add_teks.getText().toString();
+                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                String currentUserID = prefs.getString("currentUserID", null);
                 if (currentUserID != null) {
                     if (newsToEdit != null) {
                         updateNews(newsToEdit.getId(), title, detail, currentUserID);
@@ -119,6 +121,14 @@ public class AddNews extends AppCompatActivity {
     private void updateNews(String newsId, String title, String detail, String currentUserID) {
         DatabaseReference newsRef = mDatabase.child(newsId);
         News news = new News(newsId, title, detail, newsToEdit.getPhotoUrl(), currentUserID);
+        if (newsToEdit != null && newsToEdit.getUserEmail() != null) {
+            news.setUserEmail(newsToEdit.getUserEmail());
+        } else {
+            SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            String userEmail = prefs.getString("userEmail", null);
+            news.setUserEmail(userEmail);
+        }
+
         newsRef.setValue(news)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "News updated successfully", Toast.LENGTH_SHORT).show();
@@ -128,7 +138,6 @@ public class AddNews extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Failed to update news", Toast.LENGTH_SHORT).show();
                 });
     }
-
 
     private void selectImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Gallery", "Cancel"};
@@ -207,7 +216,7 @@ public class AddNews extends AppCompatActivity {
         DatabaseReference newsRef = mDatabase.push();
         String newsId = newsRef.getKey();
         News news = new News(newsId, title, detail, photoUrl, currentUserID);
-        news.setUserEmail(userEmail); // Simpan userEmail di sini
+        news.setUserEmail(userEmail);
         newsRef.setValue(news)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "News added successfully", Toast.LENGTH_SHORT).show();

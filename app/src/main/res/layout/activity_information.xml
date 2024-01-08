@@ -51,6 +51,7 @@
         android:gravity="center_vertical">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:cardCornerRadius="50dp"

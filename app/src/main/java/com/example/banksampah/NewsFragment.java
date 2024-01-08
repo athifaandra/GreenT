@@ -111,13 +111,10 @@ public class NewsFragment extends Fragment {
     private void deleteNews(News news) {
         DatabaseReference newsRef = mDatabase.child(news.getId());
         newsRef.removeValue().addOnSuccessListener(aVoid -> {
-            // Berhasil dihapus
             Toast.makeText(requireContext(), "News deleted successfully", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
-            // Gagal menghapus
             Toast.makeText(requireContext(), "Failed to delete news: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }).addOnCanceledListener(() -> {
-            // Dibatalkan
             Toast.makeText(requireContext(), "Deletion canceled", Toast.LENGTH_SHORT).show();
         });
     }

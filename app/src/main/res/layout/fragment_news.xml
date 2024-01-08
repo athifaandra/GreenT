@@ -6,12 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".NewsFragment">
 
+    <TextView
+        android:id="@+id/text_news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="News"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/text_news_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share your interesting experiences to protect our earth"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_news_title"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_news"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/button_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_news_description"
         tools:listitem="@layout/list_item_news" />
 
     <FrameLayout
@@ -32,6 +58,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:backgroundTint="@android:color/holo_green_light"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
