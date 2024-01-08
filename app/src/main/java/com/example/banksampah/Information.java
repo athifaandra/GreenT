@@ -1,7 +1,6 @@
 package com.example.banksampah;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -28,15 +27,14 @@ public class Information extends AppCompatActivity {
 
         CardView cardView = findViewById(R.id.cardView);
         cardView.setOnClickListener(view -> {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-            emailIntent.setData(Uri.parse("mailto:"));
-
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("text/plain");
             emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"greent@gmail.com"});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "Isi pesan");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Write Your Message");
 
             if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(emailIntent);
+                startActivity(Intent.createChooser(emailIntent, "Send Email"));
             } else {
                 Toast.makeText(getApplicationContext(), "No email app installed", Toast.LENGTH_SHORT).show();
             }
