@@ -1,57 +1,31 @@
 package com.example.banksampah;
 
 public class RecycleItem {
-    private String titleLeft;
-    private String titleRight;
-    private String imageLeftResource;
+    private String imageURL, caption;
 
-    private String imageRightResource;
-
-    private RecycleItem() {
+    public RecycleItem () {
 
     }
 
-    public String getTitleLeft() {
-        return titleLeft;
+    public RecycleItem(String imageURL, String caption){
+        this.imageURL = imageURL;
+        this.caption = caption;
     }
 
-    public void setTitleLeft(String titleLeft) {
-        this.titleLeft = titleLeft;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public String getTitleRight() {
-        return titleRight;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public void setTitleRight(String titleRight) {
-        this.titleRight = titleRight;
+    public String getCaption() {
+        return caption;
     }
 
-    public String getImageLeftResource() {
-        return imageLeftResource;
+    public void setCaption(String caption) {
+        this.caption = caption;
     }
-
-    public void setImageLeftResource(String imageLeftResource) {
-        this.imageLeftResource = imageLeftResource;
-    }
-
-    public String getImageRightResource() {
-        return imageRightResource;
-    }
-
-    public void setImageRightResource(String imageRightResource) {
-        this.imageRightResource = imageRightResource;
-    }
-
-
-
-    public RecycleItem(String titleLeft, String titleRight, String imageLeftResource, String imageRightResource) {
-        this.titleLeft = titleLeft;
-        this.titleRight = titleRight;
-        this.imageLeftResource = imageLeftResource;
-        this.imageRightResource = imageRightResource;
-    }
-
-
 }
 

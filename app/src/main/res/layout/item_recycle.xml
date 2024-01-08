@@ -1,97 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="370dp"
+        android:layout_height="300dp"
+        android:id="@+id/recyclerImage"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:text="caption"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="10dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/box_menu">
-
-                <ImageView
-                    android:id="@+id/iv_imgkiri"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/sampah_organik_1"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_titlekiri"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vegetables/Leaves"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
-
-
-
-        <ImageView
-            android:id="@+id/iv_panah"
-            android:layout_width="95dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/panah_1"/>
-
-        <LinearLayout
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/box_menu">
-
-                <ImageView
-                    android:id="@+id/iv_imgkanan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/pupuk_1"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_titlekanan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Compose"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
-
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
+        android:id="@+id/recyclerCaption"/>
 
 </LinearLayout>

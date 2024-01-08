@@ -18,9 +18,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
     private ArrayList<RecycleItem> dataList;
     private Context context;
 
-    public RecycleAdapter(ArrayList<RecycleItem> dataList, Context context) {
-        this.dataList = dataList;
+    public RecycleAdapter(Context context, ArrayList<RecycleItem> dataList) {
         this.context = context;
+        this.dataList = dataList;
     }
 
     @NonNull
@@ -33,19 +33,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
     @Override
     public void onBindViewHolder(@NonNull RecycleViewHolder holder, int position) {
 
-        Glide.with(context).load(dataList.get(position).getImageLeftResource()).into(holder.imageLeft);
-        holder.titleLeft.setText(dataList.get(position).getTitleLeft());
+        Glide.with(context).load(dataList.get(position).getImageURL()).into(holder.recyclerImage);
+        holder.recyclerCaption.setText(dataList.get(position).getCaption());
 
-        Glide.with(context).load(dataList.get(position).getImageRightResource()).into(holder.imageRight);
-        holder.titleRight.setText(dataList.get(position).getTitleRight());
-
-
-//        RecycleItem currentItem = recycleItemList.get(position);
-//
-//        holder.titleLeft.setText(currentItem.getTitleLeft());
-//        holder.titleRight.setText(currentItem.getTitleRight());
-//        holder.imageLeft.setImageResource(Integer.parseInt(currentItem.getImageLeftResource()));
-//        holder.imageRight.setImageResource(Integer.parseInt(currentItem.getImageRightResource()));
     }
 
     @Override
@@ -54,15 +44,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
     }
 
     public static class RecycleViewHolder extends RecyclerView.ViewHolder {
-        public TextView titleLeft, titleRight;
-        public ImageView imageLeft, imageRight;
+        ImageView recyclerImage;
+        TextView recyclerCaption;
 
         public RecycleViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleLeft = itemView.findViewById(R.id.tv_titlekiri);
-            titleRight = itemView.findViewById(R.id.tv_titlekanan);
-            imageLeft = itemView.findViewById(R.id.iv_imgkiri);
-            imageRight = itemView.findViewById(R.id.iv_imgkanan);
+            recyclerImage = itemView.findViewById(R.id.recyclerImage);
+            recyclerCaption = itemView.findViewById(R.id.recyclerCaption);
         }
     }
 }

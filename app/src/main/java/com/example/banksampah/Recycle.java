@@ -1,6 +1,5 @@
 package com.example.banksampah;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,28 +21,29 @@ import java.util.ArrayList;
 
 public class Recycle extends AppCompatActivity {
 
+    FloatingActionButton fab;
     RecyclerView recyclerView;
     ArrayList<RecycleItem> dataList;
     RecycleAdapter adapter;
-    final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(); //getReference(Images) ??
+    final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Images"); //getReference(Images) ??
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycle);
 
-        recyclerView = findViewById(R.id.rv_recycle);
-
+        //floating button plus
+        fab = findViewById(R.id.fab);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         dataList = new ArrayList<>();
-        adapter = new RecycleAdapter(dataList, this);
+        adapter = new RecycleAdapter(this, dataList);
         recyclerView.setAdapter(adapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     RecycleItem recycleItem = dataSnapshot.getValue(RecycleItem.class);
                     dataList.add(recycleItem);
                 }
@@ -56,8 +56,16 @@ public class Recycle extends AppCompatActivity {
             }
         });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Recycle.this, AddRecycle.class);
+                startActivity(intent);
+            }
+        });
 
-    Toolbar toolbar = findViewById(R.id.appbar_widget_recycle);
+
+        Toolbar toolbar = findViewById(R.id.appbar_widget_recycle);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,16 +75,7 @@ public class Recycle extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab = findViewById(R.id.button_addre);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Recycle.this, AddRecycle.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
 }
-
