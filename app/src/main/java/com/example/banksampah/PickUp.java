@@ -57,16 +57,16 @@ public class PickUp extends AppCompatActivity {
             binding.inputWaktu.setText(time);
         }
 
-        // Tempatkan potongan kode untuk menampilkan gambar di sini
-        Intent intent = getIntent();
-        if (intent != null) {
-            String imageUrl = intent.getStringExtra("IMAGE_URL");
-            if (imageUrl != null && !imageUrl.isEmpty()) {
-                // Tampilkan gambar menggunakan Glide atau cara lain
-                ImageView imageView = findViewById(R.id.imgview1); // Gantilah dengan ID yang sesuai
-                Glide.with(this).load(imageUrl).into(imageView);
-            }
-        }
+//        // Tempatkan potongan kode untuk menampilkan gambar di sini
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            String imageUrl = intent.getStringExtra("IMAGE_URL");
+//            if (imageUrl != null && !imageUrl.isEmpty()) {
+//                // Tampilkan gambar menggunakan Glide atau cara lain
+//                ImageView imageView = findViewById(R.id.imgview1); // Gantilah dengan ID yang sesuai
+//                Glide.with(this).load(imageUrl).into(imageView);
+//            }
+//        }
 
         Toolbar toolbar = findViewById(R.id.appbar_widget_pickup);
         setSupportActionBar(toolbar);
@@ -90,14 +90,14 @@ public class PickUp extends AppCompatActivity {
             }
         });
 
-        Button btnUpload = findViewById(R.id.btn_upload);
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PickUp.this, Uploadimg.class);
-                startActivity(intent);
-            }
-        });
+//        Button btnUpload = findViewById(R.id.btn_upload);
+//        btnUpload.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(PickUp.this, Uploadimg.class);
+//                startActivity(intent);
+//            }
+//        });
 
         binding.btnOrganic.setOnClickListener(v -> {
             Intent organicIntent = new Intent(this, OrganicActivity.class);
