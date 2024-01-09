@@ -6,10 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -21,6 +31,9 @@ public class HomeFragment extends Fragment {
     ArrayList<SetterGetter2> menuData2;
     HomeAdapter adapterMenu;
     HomeAdapter2 adapterMenu2;
+    private DatabaseReference databaseReference;
+    TextView uangText;
+    ProgressBar progressBar;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -30,6 +43,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        recyclerViewMenu3 = view.findViewById(R.id.rv_menu3);
+        recyclerViewMenu2 = view.findViewById(R.id.rv_menu2);
+        uangText = view.findViewById(R.id.uang);
+        progressBar = view.findViewById(R.id.progressBar);
 
         ImageView soCuteImageView = view.findViewById(R.id.cute);
         soCuteImageView.setOnClickListener(new View.OnClickListener() {
@@ -43,11 +61,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        recyclerViewMenu3 = view.findViewById(R.id.rv_menu3);
-        recyclerViewMenu2 = view.findViewById(R.id.rv_menu2);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("user_income");
 
         setupMenuRecyclerView();
         setupMenu2RecyclerView();
+
+        retrieveIntValue();
 
         return view;
     }
@@ -71,5 +92,28 @@ public class HomeFragment extends Fragment {
         adapterMenu2 = new HomeAdapter2(menuData2);
         recyclerViewMenu2.setLayoutManager(new GridLayoutManager(requireContext(), 1));
         recyclerViewMenu2.setAdapter(adapterMenu2);
+    }
+
+    private void retrieveIntValue() {
+        progressBar.setVisibility(View.VISIBLE);
+        // Retrieve the int value from Firebase
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Get the int value
+                    String uangData = dataSnapshot.getValue(String.class);
+                    uangText.setText(uangData);
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors if needed
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), "Error get data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

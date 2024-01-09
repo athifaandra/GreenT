@@ -17,12 +17,20 @@
         android:theme="@style/Theme.Banksampah"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrganicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddTrashActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddRecycle"
             android:exported="false" />
         <activity
             android:name=".AddNews"
             android:exported="false" />
-
         <activity
             android:name=".Uploadimg"
             android:exported="false" />
@@ -46,9 +54,6 @@
             android:exported="false" />
         <activity
             android:name=".Recycle"
-            android:exported="false" />
-        <activity
-            android:name=".Organic"
             android:exported="false" />
         <activity
             android:name=".Information"

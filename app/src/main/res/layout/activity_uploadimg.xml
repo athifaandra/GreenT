@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Uploadimg">
 
-
     <ImageView
         android:id="@+id/imgview"
         android:layout_width="300dp"
@@ -33,6 +32,14 @@
         android:layout_marginTop="10dp"
         android:text="Save Image"
         android:enabled="false"/>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBarUploadImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

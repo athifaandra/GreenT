@@ -1,10 +1,12 @@
 package com.example.banksampah;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +20,7 @@ public class alamat extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private EditText nohp, alamat, kecamatan, kelurahan, kodepos;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,29 +45,39 @@ public class alamat extends AppCompatActivity {
         kecamatan = findViewById(R.id.input_subdistric);
         kelurahan = findViewById(R.id.input_ward);
         kodepos = findViewById(R.id.input_add_postalcode);
+        progressBar = findViewById(R.id.progressBarAlamat);
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-
-
+        mDatabase = FirebaseDatabase.getInstance().getReference("alamats");
     }
 
     public void saveChanges(View view) {
         writeNewUser();
-
-        Intent intent = new Intent(this, PickUp.class);
-        startActivity(intent);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     public void writeNewUser() {
-        alamatsg  alamatsege = new alamatsg (nohp.getText().toString(),
+        alamatsg alamatsege = new alamatsg(nohp.getText().toString(),
                 alamat.getText().toString(),
                 kecamatan.getText().toString(),
                 kelurahan.getText().toString(),
-                kodepos.getText().toString());
+                kodepos.getText().toString()
+        );
 
-
-        mDatabase.child("alamats").child(alamatsege.getPhonum()).setValue(alamatsege);
+        mDatabase.setValue(alamatsege).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                finish();
+                Toast.makeText(alamat.this, "Data added successfully", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+            } else {
+                // There was an error saving the data
+                Exception exception = task.getException();
+                if (exception != null) {
+                    Log.e("Firebase", "Error adding data: " + exception.getMessage());
+                    Toast.makeText(alamat.this, "Error adding data: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 }

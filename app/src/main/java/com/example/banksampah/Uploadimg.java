@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -27,8 +28,8 @@ import java.util.UUID;
 
 public class Uploadimg extends AppCompatActivity {
 
-   com.google.firebase.storage.StorageReference storageReference;
-//    LinearProgressIndicator progress;
+    com.google.firebase.storage.StorageReference storageReference;
+    ProgressBar progressBar;
     Uri image;
 
     MaterialButton selectImage, saveImage;
@@ -56,8 +57,8 @@ public class Uploadimg extends AppCompatActivity {
 
         FirebaseApp.initializeApp(Uploadimg.this);
         storageReference = FirebaseStorage.getInstance().getReference();
-        
-//        progress = findViewById(R.id.progress);
+
+        progressBar = findViewById(R.id.progressBarUploadImg);
         imageView = findViewById(R.id.imgview);
         selectImage = findViewById(R.id.btn_selectimg);
         saveImage = findViewById(R.id.btn_simpanimg);
@@ -80,6 +81,7 @@ public class Uploadimg extends AppCompatActivity {
     }
 
     private void saveImage(Uri image) {
+        progressBar.setVisibility(View.VISIBLE);
         com.google.firebase.storage.StorageReference reference = storageReference.child("image/" + UUID.randomUUID().toString());
         reference.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -96,6 +98,7 @@ public class Uploadimg extends AppCompatActivity {
                         intent.putExtra("IMAGE_URL", imageUrl);
                         startActivity(intent);
                         finish(); // Hapus ini jika Anda ingin kembali ke halaman Uploadimg
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
             }
@@ -103,11 +106,9 @@ public class Uploadimg extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(Uploadimg.this, "There was an error while uploading image", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
             }
         });
 
-    }
-
-    private class StorageReference {
     }
 }
